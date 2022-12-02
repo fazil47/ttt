@@ -9,8 +9,19 @@ export function getCommonWordMap(
 ): Map<string, number> {
   const wordCounts = new Map<string, number>();
 
+  console.log(text);
+  text = text.replace(/[\n\r]/g, " ");
+  console.log(text);
+
   // Store the count of each word in the map
   text.split(" ").forEach((word) => {
+    if (word === "" || word === " ") {
+      return;
+    }
+
+    // Convert to lowercase
+    word = word.toLowerCase();
+
     const currentCount = wordCounts.get(word) || 0;
     wordCounts.set(word, currentCount + 1);
   });
